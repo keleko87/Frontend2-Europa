@@ -1,0 +1,9 @@
+EXPORTAR IMAGENES AL DOBLE DE TAMAÑO y luego reducirlas con css para NO tener problemas con las PANTALLAS RETINA: IPAD, Iphone y Ultrabook Asus,etc
+
+En estas pantallas 1pixel equivalen a 4pixeles , es decir en un 1 pixel(1x1) entran 2x2 pixeles = 4 pixeles, por lo que tienen el doble de resolucion que una pantallas normal
+
+Por ello es BUENA PRACTICA exportar las imagenes en la carpeta imagenes de nuestro proyecto al doble de tamaño del que luego tendran dentro del website. Asi no se distorsionarán en pantallas RETINA
+
+Ejemplo: foto.png con resolucion de 80x80px en la web la exportaremos en nuestra carpeta de proyecto a 160x160px
+
+Los jpg al doble de resolucion y al 50% de calidad en vez de al 100% ya que seran muy pesadas este tipo archivo.

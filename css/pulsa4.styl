@@ -1,0 +1,96 @@
+gris_oscuro = #444 
+azul = #22BCE0
+naranja = #DD4F24
+
+body
+	background #E8E8E8
+	color gris_oscuro
+	font-family Arial
+	font-size 16px
+
+header 
+	background gris_oscuro
+	color white
+	overflow hidden /* Oculta los elementos que se salen fuera de la cajar en este caso el Header. Genera una "caja" para los elementos flotantes (float). Se puede utilizar CLEAR para obtener un resultado parecido */
+	padding 0.5em  
+	position relative /*Los elementos que van dentro del header tendra una posicion relativa al header,cogen como referencia la posicion 0,0 del header.*/
+
+	.logo 
+		border-right 1px solid azul
+		width 60px  /*En las imagenes los mas logico es usar px */
+		float left /*Este elemento flotará a la izquierda, por lo que otros elementos se pegarán a el por la parte derecha*/
+
+		img
+			width 52px
+
+
+	.titular
+		margin 0 60px 0 70px  /* 0: superios 80px:izq 0:bottom 70px:derecha */
+
+		.titulo
+			font-size 18px
+			font-weight normal
+			margin 0
+			padding 0
+		
+		.filtro
+			color azul
+			font-size 14px
+			font-style italic
+			font-weight bold
+			text-decoration none
+
+		.publicar
+			background naranja
+			color white
+			float right /*Flotará a la dcha*/
+			font-style italic
+			margin -5px 1em 0 0
+			padding 0.2em 0.5em /*0.2 arriba y abajo y 0.5 a los lados*/
+			text-decoration none
+			text-shadow 1px 1px 0px black /*Primer param: cuanto se mueve la sombra en X. Segunda paramentro:Cuanto se mueve en Y. Tercer parametro: Difuminado*/
+	.usuario
+		position absolute /*Tomara como referencia la posicion 0,0 de HEADER */
+		top 10px
+		right 10px
+
+		.avatar
+			margin 0 1em 0 0
+			position relative
+			z-index 2 /* Me permite mandar delante o detras un elemento sobre otro. Cuanto mayor sea el nº mas adelante se ubicará. NO funciona si la position es STATIC*/
+			img 
+				border-radius 50%
+				width 50px
+		.flechita
+			background naranja
+			color white
+			display block /*Actua como un bloque por lo en un primer momento no podra tener ningun objeto a su lado*/
+			padding 3px
+			position absolute /*Se ubica en relacion al elemento con pos relative que mas cerca tenga --> avatar */
+			right 0
+			top 15px
+			text-align right
+			width 2em
+
+nav 
+	background azul
+
+	/*ROMPEMOS LAS LISTAS*/
+	.menu
+		height 40px
+		line-height 40px   /*Con esto le marcamos un alto de linea y un alto de menu de 40 px y NOS HARA SCROLL, pero los elementos no se nos saldran de una sola linea*/
+		margin 0
+		overflow-x auto /*Caja en coordena X automatica*/
+	
+/*NO ME FUNCIONA EL NOWRAP*/
+		white-space nowrap /*WRAP: Pone el texto por debajo si se sale de la pantalla hacia la dcha y no se ve.*/
+						   /*NOWRAP: Hace lo contrario. Deja el texto que siga hacia la dcha aunque no se vea y crea un SCROLL*/
+		li 
+			display inline-block /*Con esto desaparece la lista y se pone uno al lado del otro EN LINEA y COMO UN BLOQUE*/
+
+			a 
+				color white
+				display block /*En pantalla en linea y como un bloque*/
+				margin 0 0.5em
+				padding 0 0.2em /*Le quito el padding superior para que no me haga un SCROLL de arriba y abajo. Le aplica un relleno entre etiquetas "a"*/
+				text-decoration none
