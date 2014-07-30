@@ -1,6 +1,23 @@
-gris_oscuro = #444 
+
 azul = #22BCE0
+gris_oscuro = #444 
+gris_texto = #7A7A7A 
 naranja = #DD4F24
+
+@font-face {
+	font-family: 'iconitos';
+	src:url('../fonts/icomoon.eot?-bgakk3');
+	src:url('../fonts/icomoon.eot?#iefix-bgakk3') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?-bgakk3') format('woff'),
+		url('../fonts/icomoon.ttf?-bgakk3') format('truetype'),
+		url('../fonts/icomoon.svg?-bgakk3#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+a 
+	color naranja
 
 body
 	background #E8E8E8
@@ -8,13 +25,34 @@ body
 	font-family Arial
 	font-size 16px
 
+footer
+	background naranja
+	color rgba(white,0.5)
+	padding 2px 0 /*Le coloco 0 despues de 2px para que no me haga scroll lateral en dispositivos moviles*/
+	text-align center
+	width 100% /*Le dará anchura total y por tanto será de color naranja de fondo de lado a lado*/
+	
+	h3 
+		font-size 14px
+		font-weight normal
+
+		strong 
+			display block /*Se comportará como un bloque ocupando el resto de la parte derecha como margen*/
+		
+		.mejor
+			&:before
+			&:after 
+				content "-" /*Le colocamos un guion - antes y despues del elemento*/
+
 header 
 	background gris_oscuro
+	box-shadow 0 5px 0 rgba(0,0,0,0.2) /*El ultimo param es la transparencia en este caso de 0.2 = 20%*/
 	color white
 	overflow hidden /* Oculta los elementos que se salen fuera de la cajar en este caso el Header. Genera una "caja" para los elementos flotantes (float). Se puede utilizar CLEAR para obtener un resultado parecido */
 	padding 0.5em  
 	position relative /*Los elementos que van dentro del header tendra una posicion relativa al header,cogen como referencia la posicion 0,0 del header.*/
-
+	z-index 1   /* Pongo el elemento por delante para que se aprecie el box-shadow*/
+	
 	.logo 
 		border-right 1px solid azul
 		width 60px  /*En las imagenes los mas logico es usar px */
@@ -49,15 +87,23 @@ header
 			padding 0.2em 0.5em /*0.2 arriba y abajo y 0.5 a los lados*/
 			text-decoration none
 			text-shadow 1px 1px 0px black /*Primer param: cuanto se mueve la sombra en X. Segunda paramentro:Cuanto se mueve en Y. Tercer parametro: Difuminado*/
+			
+			&:before
+				display inline-block
+				content "\e600"
+				font-family iconitos
+				margin 0 3px 0 0
+
+
 	.usuario
 		position absolute /*Tomara como referencia la posicion 0,0 de HEADER */
 		top 10px
 		right 10px
 
 		.avatar
-			margin 0 1em 0 0
+			margin 0 1.1em 0 0
 			position relative
-			z-index 2 /* Me permite mandar delante o detras un elemento sobre otro. Cuanto mayor sea el nº mas adelante se ubicará. NO funciona si la position es STATIC*/
+			z-index 1 /* Me permite mandar delante o detras un elemento sobre otro. Cuanto mayor sea el nº mas adelante se ubicará. NO funciona si la position es STATIC*/
 			img 
 				border-radius 50%
 				width 50px
@@ -65,17 +111,37 @@ header
 			background naranja
 			color white
 			display block /*Actua como un bloque por lo en un primer momento no podra tener ningun objeto a su lado*/
-			padding 3px
+			padding 2px
 			position absolute /*Se ubica en relacion al elemento con pos relative que mas cerca tenga --> avatar */
 			right 0
 			top 15px
 			text-align right
-			width 2em
+			width 50%
+			z-index 0
+
+			&:after
+				display inline-block
+				content "\e602"
+				font-family iconitos
+				text-shadow 2px 1px 0 black
 
 nav 
 	background azul
+	border-left 15px solid white
+	position relative /* Posicion relativa con respecto al elemento que le precede (HEADER)
 
-	/*ROMPEMOS LAS LISTAS*/
+	/*AFTER y BEFORE  Para crear pseudo-objetos. */
+	
+	&:before  /*Añado un nav:before y Igual que el anterior */
+		border-bottom 20px solid transparent
+		border-left 7px solid white
+		border-top 20px solid transparent
+		content "" /*Le podemos poner un contenido dentro del before*/
+		left 0
+		position absolute /*Para que se coloque,si se lo quito se irá hacia arriba. Toma referencia la pos 0,0 del elemento con position relative mas cercano (nav)*/
+		top 0
+
+	/*ROMPEMOS los estilos que traen las listas por defecto*/
 	.menu
 		height 40px
 		line-height 40px   /*Con esto le marcamos un alto de linea y un alto de menu de 40 px y NOS HARA SCROLL, pero los elementos no se nos saldran de una sola linea*/
@@ -95,3 +161,97 @@ nav
 				margin 0 0.5em
 				padding 0 0.2em /*Le quito el padding superior para que no me haga un SCROLL de arriba y abajo. Le aplica un relleno entre etiquetas "a"*/
 				text-decoration none
+
+.posts
+	padding 0.53em
+	.post
+		background white 
+		border-radius 0 0 0.5em 0.5em  /*Agujas del reloj--> superior izq, superior dcha, abajo dcha, abajo izq*/
+		box-shadow 2px 2px 10px rgba(black,0.5)
+		color gris_texto7
+		margin-bottom 1em /*Separamos cada ARTICLE con un poco de espacio*/
+		
+		.acciones
+			border-top 3px solid azul /*La variable"azul" creado arriba*/
+			padding 0.3em
+			overflow hidden /* Para que no se nos corte la caja al poner los elementos con (Float)*/
+
+			.datos
+				float right
+
+				.comentarios
+					background gris_texto
+					border-radius 3px
+					color white
+					margin 0 1em 0 0 
+					padding 2px 5px
+					text-decoration none
+
+				.estrellita /*Se hace con :after y position absolute con respecto al alto de la linea que sera = relative*/
+					text-decoration none
+					
+					&:after
+						color #EDD561
+						content "\e601"
+						font-family iconitos
+	
+						
+			.votos
+				float left
+				
+				.down  /*Herencia simplemente poniendo un elemento debajo de otro y despues los atributos*/
+				.up  
+					vertical-align top
+					text-decoration none
+
+				.down	
+					color red
+					&:before
+						font-family iconitos /*Debo añadirle el nombre de la familia de fuentes*/
+						font-size 1.5em
+						content "\e602"/*Aqui para añadirle debo utilizar un pseudoelemento como BEFORE y añadimos content y el codigo que nos indique en el style descargado de icomooon*/
+						vertical-align bottom
+				.up 
+					color green 
+					&:after
+						font-family iconitos 
+						font-size 1.5em
+						content "\e603" /*Content solo funciona con los pseudoelementos BEFORE y AFTER*/
+						vertical-align bottom
+
+		.descripcion
+			color gris_texto
+
+			.detalles 
+				height 160px /*Es el alto de la imagen. Me ajustará todos los elementos al tener la misma altura*/
+				margin-left 130px  /*Como la img flota(float): Aqui para que el texto se mueva y deje un margen con la img hay que sumar el width de img = 120px + 10px(lo que lo quiero mover) = 130px*/
+				
+				.autor
+					margin 0.5em 0 1.5em 0
+				
+				.fecha
+					float right	
+					margin 0 1em 0 0  /*Las etiquetas <p> por defecto tiene un 1em de espaciado por lo que para que no se nos pegue al margen derecho le damos un 1em*/
+				.tag
+					background azul
+					border-radius 0.5em /*EN las 4 esquinas*/
+					color white
+					padding 0.2em 0.5em
+					text-decoration none
+
+				.titulo
+					color gris_oscuro
+					font-size 18px
+					font-style italic
+					margin 0 /*la class .titulo es una "h2": Por defecto esta etiqueta tiene un margen. Para quitarselo lo ponemos a 0*/
+					padding 0.5em 0.5em 0 0 /*Arriba, dcha, abajo, izq*/
+			
+			.imagen
+				float left /*La imagen flotará a la izq y podrán colocarse elementos,en este caso el titulo subira hacia arriba y se pondrá a su derecha*/
+				
+				img  /*BUENA PRACTICA: Las imagenes por defecto se ALINEAN como "baseline" (La raya donde esta lo ultimo del texto)*/
+					height 160px
+					vertical-align top /*Para que la imagen no se alinee como BASELINE*/
+					width 120px
+
+		
